@@ -1,15 +1,23 @@
 package com.vbs.demo.controller;
 
+import com.vbs.demo.models.History;
+import com.vbs.demo.repositories.HistoryRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = "*")
 public class HistoryController {
-
-	@GetMapping({"/history", "/admin/history"})
-	public String historyPage() {
-		// Forward to the static history.html in resources/static
-		return "forward:/history.html";
+    @Autowired
+	HistoryRepo historyRepo;
+	@GetMapping("/history")
+	public List<History> getHistory() {
+		return historyRepo.findAll();
 	}
 
 }
