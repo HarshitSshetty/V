@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 public class HistoryController {
-    @Autowired
+    @Autowired//
 	HistoryRepo historyRepo;
 	@GetMapping("/history")
 	public List<History> getHistory() {
